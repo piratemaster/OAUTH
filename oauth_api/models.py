@@ -1,12 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
 # Create your models here.
+from drf_yasg.utils import swagger_auto_schema
 
 from rest_framework import generics, permissions, serializers
 
 from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope
 
 
+@swagger_auto_schema(operation_description="partial_update description override", responses={404: 'slug not found'})
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
